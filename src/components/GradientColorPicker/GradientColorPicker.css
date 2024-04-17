@@ -1,0 +1,19 @@
+/*
+  Authors : Mudey Formation
+  Website : https://mudey.fr/
+  App Name : E-commerce with React.Js
+  Created At : 22/02/2024 11:09:57
+*/
+
+.GradientColorPicker
+{
+
+}
+
+.color-selector{
+  position: absolute;
+  left: -259px;
+  top: -100px;
+  z-index: 9999;
+ }
+ 

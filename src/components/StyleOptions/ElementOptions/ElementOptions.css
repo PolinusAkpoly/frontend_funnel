@@ -1,0 +1,44 @@
+/*
+  Authors : Mudey Formation
+  Website : https://mudey.fr/
+  App Name : E-commerce with React.Js
+  Created At : 13/02/2024 14:03:19
+*/
+
+.ElementOptions {}
+.element-options {
+  height: calc(100vh - 50px);
+  /* border: 1px solid red; */
+  overflow: hidden;
+}
+.element-options header{
+  /* border: 1px solid red; */
+  height: 50px;
+}
+.element-options .element-options-content{
+  overflow-x: hidden;
+  /* border: 1px solid blue; */
+  overflow-y: auto;
+  height: calc(100vh - 100px);
+}
+.element-options form{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  white-space: nowrap;
+  gap: 2px;
+}
+.element-options form input[type='text']:hover,
+.element-options form select,
+.element-options form input[type='text']{
+  border: 0.1px solid #ccc;
+  height: 35px;
+  outline: none;
+}
+.element-options form input[type='checkbox']{
+}
+.element-options form input[type='number']{
+  width: 50px;
+  height: 35px;
+}

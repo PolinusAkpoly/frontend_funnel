@@ -1,0 +1,120 @@
+/*
+  Authors : Mudey Formation
+  Website : https://mudey.fr/
+  App Name : E-commerce with React.Js
+  Created At : 14/02/2024 08:04:15
+*/
+
+.BlockElement {
+  border: 0.1px dashed rgb(0, 123, 255);
+  /* padding: 20px 0; */
+  /* padding: 15px 0; */
+  /* margin: 5px; */
+}
+.BlockElement .col-item{
+  border: 0.1px dashed green;
+
+}
+.BlockElement.currentBlock .col-item{
+  border: 0.1px dashed rgb(128, 21, 0);
+}
+
+.BlockElement.over {
+  border: 0.1px dashed green;
+
+}
+.BlockElement .separator{
+  border: 1px solid red;
+}
+.btn-add{
+  color: white;
+  /* padding: 0 2px; */
+  cursor: pointer;
+}
+.btn-add.view{
+  background-color: rgb(0, 123, 255);
+}
+.btn-add.delete{
+  background-color: rgb(247, 5, 33);
+}
+
+.BlockElement .add-item{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  top: 0;
+  opacity: 0;
+}
+
+.BlockElement.over .add-item{
+  opacity: 0.8;
+}
+.BlockElement .btn-primary.over{
+  background-color: green !important;
+  border: 1px solid green;
+}
+.BlockElement div[class^='content-']{
+  
+  min-height: 20px;
+  /* background-color: #ccc; */
+  /* margin-bottom: 5px; */
+}
+
+.toolbar.view {
+  /* border: 0.1px solid var(--bs-blue) !important; */
+  /* padding: 8px; */
+  margin: 0 !important;
+  background-color: var(--bs-blue) !important;
+}
+.editor{
+  border: 0.1px dashed rgb(13, 112, 249) !important;
+  padding: 0.1px;
+  padding-top: 20px;
+
+}
+.editor.view {
+  border: 0.1px solid var(--bs-blue) !important;
+}
+.editor:hover{
+  border: 0.1px solid orange !important;
+  cursor: pointer;
+}
+.mouseLeave .editor{
+  border: 0.1px solid rgb(255, 255, 255) ;
+}
+.d-orange, .d-orange> *{
+  background-color: orange ;
+  border-color: orange ;
+  margin: 0 !important;
+  color: white;
+}
+
+.d-mouseLeave{
+  border-color: orange ;
+}
+
+.toolbar {
+  /* margin-bottom: 8px 0; */
+  position: absolute;
+  /* right: 0; */
+  z-index: 9999999;
+}
+
+
+.toolbar input{
+  height: 15px;
+  width: 15px;
+}
+
+
+.header-button {
+  cursor: pointer;
+  margin-right: 8px;
+  padding: 0.1px 4px;
+  font-size: 14px;
+}
+
+.mouseLeave{
+  visibility: hidden;
+}

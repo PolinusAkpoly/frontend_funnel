@@ -1,0 +1,68 @@
+/*
+  Authors : Mudey Formation
+  Website : https://mudey.fr/
+  App Name : E-commerce with React.Js
+  Created At : 04/02/2024 12:59:54
+*/
+
+.Toolbox {
+  cursor: pointer;
+}
+.Toolbox i {
+  flex: 1;
+  text-align: center; /* Aligner le texte au centre si nécessaire */
+  font-size: 24px; /* Ajuster la taille de l'icône selon vos besoins */
+  margin: 0 10px; /* Ajuster la marge entre les icônes selon vos besoins */
+}
+.Toolbox .fa-one{
+  width: 30px;
+  height: 5px;
+  background-color: white;
+}
+.Toolbox .fa-two::before,
+.Toolbox .fa-two::after,
+.Toolbox .fa-three::before,
+.Toolbox .fa-three::after {
+  content: '';
+  display: inline-flex;
+  width: 20px; /* Ajustez la largeur selon vos besoins */
+  height: 5px; /* Ajustez la hauteur selon vos besoins */
+  background-color: white;
+  margin: 0 5px; /* Ajustez la marge selon vos besoins */
+}
+
+
+.Toolbox .fa-three::before {
+  margin-right: 5px; /* Ajustez la marge entre l'icône .fa-three et la barre avant */
+}
+.Toolbox .fa-three{
+  /* width: 30px;
+  height: 10px;
+  background-color: white; */
+}
+
+.ToolboxItemUi {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(3, 91, 255);
+  padding: 5px;
+  color: white;
+  width: 50px;
+  height: 50px;
+}
+.ToolboxItemUi:hover {
+  background-color: rgb(255, 145, 0);
+
+}
+.ToolboxItemIconUi{
+  font-size: 0.8rem;
+}
+.ToolboxItemTitleUi.title{
+  font-size: 0.4rem;
+  font-size: bold;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+}

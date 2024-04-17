@@ -1,0 +1,19 @@
+/*
+  Authors : Mudey Formation
+  Website : https://mudey.fr/
+  App Name : E-commerce with React.Js
+  Created At : 24/02/2024 11:13:00
+*/
+
+.BoxShadowStyles {}
+.BoxShadowStyles .color{
+  width: 50px;
+  height: 30px;
+}
+.BoxShadowStyles .color-selector{
+ position: absolute;
+ left: -259px;
+ top: -100px;
+ z-index: 9999;
+}
+

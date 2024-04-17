@@ -1,0 +1,11 @@
+/*
+  Authors : Mudey Formation
+  Website : https://mudey.fr/
+  App Name : E-commerce with React.Js
+  Created At : 15/02/2024 20:40:39
+*/
+
+.FileStorageModal {}
+.FileStorageModal img{
+  cursor: pointer;
+}

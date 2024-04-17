@@ -1,0 +1,12 @@
+/*
+  Authors : Mudey Formation
+  Website : https://mudey.fr/
+  App Name : E-commerce with React.Js
+  Created At : 04/03/2024 12:07:15
+*/
+
+.NewOptionField {
+  height: 300px;
+  overflow: auto;
+  border: 2px solid blue;
+}

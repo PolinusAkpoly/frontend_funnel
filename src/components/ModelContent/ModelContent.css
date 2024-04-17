@@ -1,0 +1,19 @@
+/*
+  Authors : Mudey Formation
+  Website : https://mudey.fr/
+  App Name : E-commerce with React.Js
+  Created At : 27/01/2024 21:08:08
+*/
+
+.ModelContent .content {
+  max-height: 75vh;
+}
+
+.ModelContent .content tbody {
+  overflow-y: auto; /* Add overflow-y property */
+}
+
+.ModelContent .dropdown-menu {
+  max-height: 300px; /* Change height to max-height */
+  overflow-y: auto; /* Change overflow-y to auto */
+}

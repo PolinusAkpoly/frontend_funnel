@@ -1,0 +1,21 @@
+/*
+  Authors : Mudey Formation
+  Website : https://mudey.fr/
+  App Name : E-commerce with React.Js
+  Created At : 15/02/2024 14:47:05
+*/
+
+.FileDrop {}
+.file-drop{
+  min-height: 60vh !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #b4b2b2;
+}
+
+.file-drop.dragging{
+  background-color: #078705;
+  color: white;
+
+}

@@ -1,0 +1,28 @@
+/*
+  Authors : Mudey Formation
+  Website : https://mudey.fr/
+  App Name : E-commerce with React.Js
+  Created At : 01/02/2024 12:02:39
+*/
+
+.TunnelEdit .content {
+  min-height: 80vh;
+  overflow: hidden;
+}
+.TunnelEdit .content .step-content,
+.TunnelEdit .content .aside{
+  overflow: hidden;
+  max-height: 89vh;
+  height: 100%;
+  overflow-y: auto;
+  /* border: 3px solid red !important; */
+}
+.TunnelEdit .content .step-content{
+  overflow: hidden;
+}
+.TunnelEdit .content .step-content .StepContentTab{
+  /* border: 3px solid red !important; */
+  overflow-y: auto;
+  height:  89vh;
+
+}

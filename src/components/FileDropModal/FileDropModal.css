@@ -1,0 +1,11 @@
+/*
+  Authors : Mudey Formation
+  Website : https://mudey.fr/
+  App Name : E-commerce with React.Js
+  Created At : 15/02/2024 14:48:00
+*/
+
+.FileDropModal {}
+.FileDropModal .modal-body{
+  min-height: 60vh;
+}

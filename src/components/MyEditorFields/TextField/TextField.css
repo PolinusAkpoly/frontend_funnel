@@ -1,0 +1,93 @@
+/*
+  Authors : Mudey Formation
+  Website : https://mudey.fr/
+  App Name : E-commerce with React.Js
+  Created At : 20/02/2024 09:20:39
+*/
+
+.TextField {
+  /* position: relative; */
+}
+.TextField.mouseEnter {
+  border: none;
+  border: 0.1px dashed rgb(47, 137, 255) !important;
+}
+
+.quill{
+  border: none;
+  /* border: 0.1px dashed orange !important; */
+  
+}
+
+
+
+
+
+.quill .ql-toolbar.ql-snow {
+  padding: 0px !important;
+  border: none;
+}
+
+.quill .ql-container{
+  padding-top: 0px;
+  border: none;
+  border: 0.1px dashed orange !important;
+  border-bottom: none;
+}
+
+.ql-toolbar.ql-snow .ql-formats {
+  margin-right: 0px;
+}
+
+.ql-editor {
+  padding: 5px;
+}
+
+.TextField .ql-snow .ql-picker-label {
+  cursor: pointer;
+  display: inline-block;
+  height: 100%;
+  padding-left: 2px;
+  padding-right: 2px;
+  position: relative;
+  width: 100%;
+}
+
+.TextField .quill {
+  position: relative;
+  z-index: 999;
+}
+
+.TextField .quill .ql-toolbar.ql-snow {
+  padding: 2px !important;
+  position: absolute;
+  top: 0px;
+  background-color: orange;
+  color: white !important;
+  opacity: 0;
+  z-index: 99999;
+}
+
+.onMouseEnter .quill:hover .ql-toolbar.ql-snow {
+  padding: 2px !important;
+  /* top: -30px; */
+  opacity: 1;
+  z-index: 99,
+}
+.startEditing .quill:hover .ql-toolbar.ql-snow {
+  padding: 2px !important;
+  /* top: -30px; */
+  opacity: 0 !important;
+  z-index: 99,
+}
+.onMouseEnter .quill:hover .ql-toolbar.ql-snow * {
+  z-index: 999,
+}
+.TextField .Toolbar .toolbar {
+  right: 0;
+}
+.quill .ql-toolbar button {
+  font-size: 0.6rem; /* Réduire la taille du texte des boutons */
+  padding: 2px 5px; /* Ajuster l'espacement interne des boutons */
+  /* Autres propriétés de style si nécessaire */
+}

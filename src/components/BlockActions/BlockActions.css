@@ -1,0 +1,25 @@
+/*
+  Authors : Mudey Formation
+  Website : https://mudey.fr/
+  App Name : E-commerce with React.Js
+  Created At : 14/02/2024 11:59:09
+*/
+
+.BlockActions  {
+  position: absolute;
+  right: 0;
+  z-index: 99;
+  background-color: hsl(223, 89%, 50%) !important;
+  cursor: pointer;
+}
+.BlockActions.top  {
+  top: 0;
+}
+.BlockActions.bottom  {
+  bottom: 0;
+}
+.BlockActions span{
+  padding: 1px;
+  color: white !important;
+  font-size: 0.9rem;
+}
