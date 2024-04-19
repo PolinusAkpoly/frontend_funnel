@@ -19,18 +19,29 @@ const AccordionField: React.FC<AccordionFieldProps> = ({ template, handleSetting
     const [mouseLeave, setMouseLeave] = useState<boolean>(true);
     const [accordions, setAccordions] = useState<Accordion[]>([]);
     const [clickTitle, setClickTitle] = useState<boolean>(false);
-    // console.log(accordions);
+    
     // console.log(typeof content);
     // setItem("accordion", accordions)
-
-
+// console.log('cont' + content);
+console.log( content);
+console.log(accordions);
 
     useEffect(() => {
-        if (!Array.isArray(content)) { 
-            setAccordions(JSON.parse(content)); 
+        if (typeof content === 'string') { 
+            try {
+                var parsedContent = JSON.parse(content); 
+                console.log('parsedContent', parsedContent);
+                setAccordions(parsedContent); 
+            } catch (error) {
+                console.error("Erreur lors de l'analyse du contenu JSON :", error);
+            }
+        } else if (!Array.isArray(content)) { 
+            setAccordions([JSON.parse(content)]); 
         } else {
             setAccordions(content); 
         }
+        
+        
     }, [content]);
     
     const handleSetOption = (option: string) => {
@@ -135,7 +146,7 @@ const AccordionField: React.FC<AccordionFieldProps> = ({ template, handleSetting
                                             onChange={(event) => handleChange(event, index)}
                                            
                                             style={{ minWidth: "100%" }}
-                                            defaultValue={accordion.title}
+                                            defaultValue={accordion.title  || content}
                                             className={'p-2 ' + (clickTitle ? 'bg-black' : '')}
 
                                         />
