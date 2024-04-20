@@ -3,6 +3,8 @@ import './AccordionField.css'
 import { BlockTemplate } from '../../../models/BlockTemplate';
 
 import { Accordion } from '../../../models/Accordion';
+import { useSelector } from 'react-redux';
+import { getBlocks, getCurrentBlock, getCurrentTemplate } from '../../../redux/selectors/selectors';
 // import { setItem } from '../../../helpers/localsorage.service';
 
 
@@ -19,12 +21,17 @@ const AccordionField: React.FC<AccordionFieldProps> = ({ template, handleSetting
     const [mouseLeave, setMouseLeave] = useState<boolean>(true);
     const [accordions, setAccordions] = useState<Accordion[]>([]);
     const [clickTitle, setClickTitle] = useState<boolean>(false);
-    
+    // const [accordionTargetTable, setAccordionTargetTable] = useState<Accordion[]>([]);
+    const blocks = useSelector(getBlocks)
+    const currentTemplate = useSelector(getCurrentTemplate)
+    const currentBlock = useSelector(getCurrentBlock)
     // console.log(typeof content);
     // setItem("accordion", accordions)
 // console.log('cont' + content);
-console.log( content);
+// console.log( content);
+// console.log(accordionTargetTable);
 console.log(accordions);
+
 
     useEffect(() => {
         if (typeof content === 'string') { 
@@ -40,6 +47,11 @@ console.log(accordions);
         } else {
             setAccordions(content); 
         }
+        
+        console.log(blocks);
+        console.log(currentTemplate);
+        console.log(currentBlock);
+        
         
         
     }, [content]);
@@ -86,6 +98,12 @@ console.log(accordions);
         event.preventDefault();
         const { name, value, type } = event.target;
 
+        // console.log(name+ "= "+ value);
+        
+        // const updatedAccordion = {}
+
+
+
         setAccordions(prevAccordions => {
             const updatedAccordions = [...prevAccordions];
             if (type === "text" && name === "title") {
@@ -97,6 +115,17 @@ console.log(accordions);
             return updatedAccordions;
         });
 
+        // setAccordionTargetTable(() => {
+        //     const updatedAccordionsTarg: Accordion[] = [];
+        //     if (type === "text" && name === "title") {
+        //         updatedAccordionsTarg[index].title = value;
+        //     }else if (type === "textarea") {
+        //         updatedAccordionsTarg[index].content = value;
+        //     }
+
+        //     return updatedAccordionsTarg;
+        // });
+        
 
 
     };
@@ -146,7 +175,7 @@ console.log(accordions);
                                             onChange={(event) => handleChange(event, index)}
                                            
                                             style={{ minWidth: "100%" }}
-                                            defaultValue={accordion.title  || content}
+                                            defaultValue={accordion.title}
                                             className={'p-2 ' + (clickTitle ? 'bg-black' : '')}
 
                                         />

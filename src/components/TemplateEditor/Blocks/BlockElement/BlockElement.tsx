@@ -202,6 +202,7 @@ const BlockElement: React.FC<BlockElementProps> = ({ block }) => {
       newTemplate.content =
        [
         {
+          
           title: "Accordion Title",
           content: "Lorem Ipsum is simply dummy. Lorem Ipsum has been the industry's standard dummy  the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic", 
           position: 0,
