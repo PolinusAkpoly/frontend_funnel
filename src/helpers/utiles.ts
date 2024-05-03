@@ -248,20 +248,23 @@ export const renderError = (fieldName: string, formik: any) => {
 
 
 
-// export function setItem(cle: string, valeur: any) {
-//   localStorage.setItem(cle, JSON.stringify(valeur));
-// }
+export async function fileToDataURL(file: File): Promise<string> {
+  return new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+          if (event.target && event.target.result) {
+              resolve(event.target.result.toString());
+          } else {
+              reject("Erreur lors de la lecture du fichier.");
+          }
+      };
+      reader.onerror = (error) => {
+          reject(error);
+      };
+      reader.readAsDataURL(file);
+  });
+}
 
-// // Fonction pour récupérer des données depuis le localStorage
-// export function getItem(cle: string) {
-//   const donnees = localStorage.getItem(cle);
-//   // Vérifier si les données existent dans le localStorage
-//   if (donnees) {
-//       return JSON.parse(donnees);
-//   } else {
-//       return null;
-//   }
-// }
 
 
 

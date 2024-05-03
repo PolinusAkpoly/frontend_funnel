@@ -12,6 +12,10 @@ import { Block } from '../../models/Block';
 import 'react-quill/dist/quill.snow.css';
 import { OuitubePlayer } from 'ouitube-player';
 import Accordion from '../Accordion/Accordion';
+import Carousel from '../Carousel/Carousel';
+import { getItem } from '../../helpers/localsorage.service';
+import { CarouselImage } from '../../models/Carousel';
+// import Reviews from '../Reviews/Reviews';
 interface TemplateViewProps { }
 
 const TemplateView: FC<TemplateViewProps> = () => {
@@ -19,6 +23,9 @@ const TemplateView: FC<TemplateViewProps> = () => {
   const [datas, setDatas] = useState<any>();
   const [loading, setLoading] = useState<boolean>(true);
   const [close, setClose] = useState<boolean>(false);
+  const newCarousel: CarouselImage[] | null= getItem('carouselsData')
+  console.log(newCarousel);
+  
 
   useEffect(() => {
     const runLocalData = async () => {
@@ -34,6 +41,9 @@ const TemplateView: FC<TemplateViewProps> = () => {
         }
       }
     };
+
+   
+
     runLocalData();
   }, [tunnelId, stepId]);
 
@@ -47,10 +57,10 @@ const TemplateView: FC<TemplateViewProps> = () => {
       return <></>
     }
 
-    return <div className='ml-5 mr-5'>
+    return <div>
     {
        data.map((elt, index) => {
-        return <div >
+        return <div className='border border-secondary border-1'>
           <Accordion key={index} title={elt.title} children={elt.content} />
         </div> 
        })
@@ -59,7 +69,13 @@ const TemplateView: FC<TemplateViewProps> = () => {
    
   }
 
-
+  const getCarousel = () => {
+    let data: CarouselImage[] = [];
+    if (newCarousel) {
+      data = [...newCarousel];
+    }
+    return <Carousel content={data} />;
+  };
   
 
   return (
@@ -98,6 +114,7 @@ const TemplateView: FC<TemplateViewProps> = () => {
                     >
                       {block.templates.filter(t => t.columnIndex == index).map((template) => {
                         const {styles, content, attributes} = template
+console.log(template.type);
 
                         if (template.type === 'IMAGE') {
                           return <div key={template._id}>
@@ -147,6 +164,12 @@ const TemplateView: FC<TemplateViewProps> = () => {
                             {getAccordion(content)}
                           </div>
                         }
+                        if (template.type === 'CAROUSEL') {
+                          return getCarousel()
+                        }
+                        // if (template.type === 'REVIEWS') {
+                        //   return < Reviews content={content} />
+                        // }
                         if (template.type === 'AUDIO') {
                           return <div key={template._id}>
                             <audio controls {...attributes}>

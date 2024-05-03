@@ -21,7 +21,8 @@ header.bg-dark {
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-  height: 32rem;
+  /* height: 32rem; */
+  height: 400px;
 }
 
 

@@ -3,8 +3,11 @@ import './AccordionField.css'
 import { BlockTemplate } from '../../../models/BlockTemplate';
 
 import { Accordion } from '../../../models/Accordion';
-import { useSelector } from 'react-redux';
-import { getBlocks, getCurrentBlock, getCurrentTemplate } from '../../../redux/selectors/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBlocks } from '../../../redux/selectors/selectors';
+import { Block } from '../../../models/Block';
+// import { useParams } from 'react-router-dom';
+import { ADD_TO_STORAGE } from '../../../redux/actions/actionTypes';
 // import { setItem } from '../../../helpers/localsorage.service';
 
 
@@ -21,23 +24,21 @@ const AccordionField: React.FC<AccordionFieldProps> = ({ template, handleSetting
     const [mouseLeave, setMouseLeave] = useState<boolean>(true);
     const [accordions, setAccordions] = useState<Accordion[]>([]);
     const [clickTitle, setClickTitle] = useState<boolean>(false);
-    // const [accordionTargetTable, setAccordionTargetTable] = useState<Accordion[]>([]);
+    // const [newBlocks, setNewBlocks] = useState<Block[]>([]);
     const blocks = useSelector(getBlocks)
-    const currentTemplate = useSelector(getCurrentTemplate)
-    const currentBlock = useSelector(getCurrentBlock)
-    // console.log(typeof content);
-    // setItem("accordion", accordions)
-// console.log('cont' + content);
-// console.log( content);
-// console.log(accordionTargetTable);
-console.log(accordions);
+    // const { tunnelId, stepId } = useParams();
+    const dispatch = useDispatch()
+   
+// console.log(newBlocks);
+
+// console.log(accordions);
 
 
     useEffect(() => {
         if (typeof content === 'string') { 
             try {
                 var parsedContent = JSON.parse(content); 
-                console.log('parsedContent', parsedContent);
+                // console.log('parsedContent', parsedContent);
                 setAccordions(parsedContent); 
             } catch (error) {
                 console.error("Erreur lors de l'analyse du contenu JSON :", error);
@@ -48,10 +49,8 @@ console.log(accordions);
             setAccordions(content); 
         }
         
-        console.log(blocks);
-        console.log(currentTemplate);
-        console.log(currentBlock);
-        
+        // console.log(blocks);
+       
         
         
     }, [content]);
@@ -93,6 +92,17 @@ console.log(accordions);
 
 
     // };
+       
+    const updateCurrentBlock = (b?: Block) => {
+        dispatch({
+          type: ADD_TO_STORAGE,
+          unique: true,
+          key: 'currentBlock',
+          payload: b
+        })
+      }
+
+
 
     const handleChange = (event: any, index: number) => {
         event.preventDefault();
@@ -115,22 +125,34 @@ console.log(accordions);
             return updatedAccordions;
         });
 
-        // setAccordionTargetTable(() => {
-        //     const updatedAccordionsTarg: Accordion[] = [];
-        //     if (type === "text" && name === "title") {
-        //         updatedAccordionsTarg[index].title = value;
-        //     }else if (type === "textarea") {
-        //         updatedAccordionsTarg[index].content = value;
-        //     }
-
-        //     return updatedAccordionsTarg;
-        // });
-        
-
+        if (template) {
+            const updatedBlocks = blocks.map((block: Block) => {
+              if (template) {
+                // Update template styles
+                block.templates = block.templates.map((item) => {
+                  if (item._id === template._id) {
+      
+                    if(accordions){
+                      item.content = accordions
+                     
+                    }
+      
+                  }
+      
+                  return item
+                });
+              }
+              return block;
+            });
+      
+            // setNewBlocks(updatedBlocks)
+            updateCurrentBlock(updatedBlocks)
+          }
 
     };
 
-  
+    
+    
 
 
     return (
@@ -150,8 +172,6 @@ console.log(accordions);
                     ))}
                 </div>
             </div>
-
-
 
             {
                 accordions.length ?

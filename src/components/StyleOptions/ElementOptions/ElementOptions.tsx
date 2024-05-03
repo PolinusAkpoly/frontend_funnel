@@ -26,7 +26,7 @@ import BoxShadowStyles from '../../BoxShadowStyles/BoxShadowStyles';
 import TransitionStyles from '../../TransitionStyles/TransitionStyles';
 import VisibilityStyles from '../../VisibilityStyles/VisibilityStyles';
 import LinkStyles from '../../Styles/LinkStyles/LinkStyles';
-import AccordionStyles from '../../Styles/AccordionStyles/AccordionStyles';
+// import AccordionStyles from '../../Styles/AccordionStyles/AccordionStyles';
 
 interface MarginPaddingParams {
   top?: number;
@@ -291,16 +291,16 @@ const ElementOptions: React.FC<ElementOptionsProps> = ({ }) => {
       />
     })
   }
-  if (currentTemplate && currentTemplate.type == "ACCORDION") {
-    properties.push({
-      id: 1990,
-      href: '#', label: 'Accordion', content: <AccordionStyles
-      localParams={localParams}
-      handleParamManyChange={handleParamManyChange}
+  // if (currentTemplate && currentTemplate.type == "ACCORDION") {
+  //   properties.push({
+  //     id: 1990,
+  //     href: '#', label: 'Accordion', content: <AccordionStyles
+  //     localParams={localParams}
+  //     handleParamManyChange={handleParamManyChange}
 
-      />
-    })
-  }
+  //     />
+  //   })
+  // }
 
   properties.push(...[
     {

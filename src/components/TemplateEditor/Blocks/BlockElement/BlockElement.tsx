@@ -207,14 +207,7 @@ const BlockElement: React.FC<BlockElementProps> = ({ block }) => {
           content: "Lorem Ipsum is simply dummy. Lorem Ipsum has been the industry's standard dummy  the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic", 
           position: 0,
         }
-        // {
-        //   title: "",
-        //   content: { 
-        //     title: "",
-        //     content: ""
-        //   }, 
-        //   position: 0,
-        // }
+       
       ]
       newTemplate.attributes = {
         ...newTemplate.attributes,
@@ -226,28 +219,52 @@ const BlockElement: React.FC<BlockElementProps> = ({ block }) => {
     }
 
     if (item.type.toLowerCase() == 'carousel') {
-      newTemplate.content = `Carousel`
+      newTemplate.content = [
+        {
+          _id: generateId(),
+          imageUrl: 'http://localhost/assets/images/Apprendre_HTML5.webp',
+        },
+        {
+          _id: generateId(),
+          imageUrl: 'http://localhost/assets/images/Base_JS.webp',
+        },
+        {
+          _id: generateId(),
+          imageUrl: 'http://localhost/assets/images/boostrap.webp'
+        }
+        
+      ]
+      
+      
       newTemplate.attributes = {
         ...newTemplate.attributes,
-        class: 'btn btn-success',
-        href: 'https://mudey.fr',
-        target: '_blank'
+        class: '',
+        href: '',
+        target: ''
       }
       newTemplate.styles = { boxSizing: "borderBox", fontSize: '20px', marginTop: '20px' }
     }
     if (item.type.toLowerCase() == 'reviews') {
-      newTemplate.content = `Reviews`
+      newTemplate.content = [
+        {
+          _id: generateId(),
+          fullname:'Jean DUROIS',
+          profileImageUrl: 'http://localhost/assets/images/Apprendre_HTML5.webp',
+          comment: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée. Généralement, on utilise un texte en faux latin",
+          created_at: new Date()
+        } 
+      ]
       newTemplate.attributes = {
         ...newTemplate.attributes,
-        class: 'btn btn-success',
-        href: 'https://mudey.fr',
-        target: '_blank'
+        class: '',
+        href: '',
+        target: ''
       }
       newTemplate.styles = { boxSizing: "borderBox", fontSize: '20px', marginTop: '20px' }
     }
     let newdata: BlockTemplate[] = [...templates, newTemplate];
 
-    // console.log({ newdata });
+    console.log({ newdata });
 
     handleSetTemplate(block._id!, newdata);
   };

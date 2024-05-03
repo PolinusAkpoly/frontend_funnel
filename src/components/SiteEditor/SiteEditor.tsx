@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import FileDropModal from '../FileDropModal/FileDropModal';
 import {  addDataWithFile, getDatasById } from '../../api/api-entity';
 import FileStorageModal from '../FileStorageModal/FileStorageModal';
-import { getBlocks, getCurrentStep } from '../../redux/selectors/selectors';
+import { getBlocks, getCurrentBlock, getCurrentStep } from '../../redux/selectors/selectors';
 import BlockElementList from '../BlockElementList/BlockElementList';
 import { BlockTemplate } from '../../models/BlockTemplate';
 import CustomLink from '../CustomLink/CustomLink';
@@ -44,6 +44,7 @@ const SiteEditor: FC<SiteEditorProps> = () => {
   const [tunnel, setTunnel] = useState<Tunnel | null>(null);
   const currentStep = useSelector((state: GlobalState) => getCurrentStep(state, tunnelId!));
   const navigate = useNavigate()
+  const currentBlock = useSelector(getCurrentBlock)
 
   
   const blocks = useSelector(getBlocks)
@@ -141,14 +142,9 @@ const SiteEditor: FC<SiteEditorProps> = () => {
           //  console.log( typeof JSON.stringify(getItem("accordion")));
 
            content = JSON.stringify(template.content)
-
-          
-           
+                     
             // content = EditorStateToHtml(template.content) as string;
            
-           
-            
-            
           } else {
             content = template.content
           }
@@ -159,6 +155,13 @@ const SiteEditor: FC<SiteEditorProps> = () => {
 
       if (tunnelId) {
         saveTunnelStepTemplate(tunnelId, stepId!, newBlock);
+        
+
+        if (currentBlock) {
+          saveTunnelStepTemplate(tunnelId, stepId!, currentBlock);
+          
+        }
+
         dispatch({
           type: ADD_NOTIFICATION,
           payload: {
@@ -170,61 +173,123 @@ const SiteEditor: FC<SiteEditorProps> = () => {
         })
       }
 
+
     } catch (error) {
       console.log({ error });
 
     }
   };
 
+  // const handleDropBlock = (event: React.DragEvent<HTMLDivElement>) => {
+  //   event.preventDefault();
+
+  //   const item = JSON.parse(event.dataTransfer.getData('text'));
+  //   console.log({item});
+    
+  //   if (item && item.type.includes('block')) {
+  //     let count = 1;
+
+  //     switch (true) {
+  //       case item.type.includes('two'):
+  //         count = 2;
+  //         break;
+  //       case item.type.includes('three'):
+  //         count = 3;
+  //         break;
+  //       case item.type.includes('four'):
+  //         count = 4;
+  //         break;
+  //       case item.type.includes('five'):
+  //         count = 5;
+  //         break;
+  //       case item.type.includes('six'):
+  //         count = 6;
+  //         break;
+  //       // Add more cases if needed
+
+  //       default:
+  //         // Handle the default case or leave count as 1
+  //         break;
+  //     }
+
+  //     console.log({ type: item.type });
+
+  //     const newBlock: Block = {
+  //       _id: generateId(),
+  //       columnCount: count,
+  //       position: blocks.length,
+  //       templates: [],
+  //       containerStyles: { boxSizing: "borderBox" },
+  //       styles: { boxSizing: "borderBox" }
+  //     };
+
+  //     let updatedBlocks = [...blocks, newBlock]
+  //     updateBlocks(updatedBlocks)
+  //   }
+
+  //   setBlockDragOver(false);
+  // }
+
   const handleDropBlock = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
 
-    const item = JSON.parse(event.dataTransfer.getData('text'));
-    console.log({item});
-    
-    if (item && item.type.includes('block')) {
-      let count = 1;
+    const itemString = event.dataTransfer.getData('text');
+    if (!itemString) {
+        console.log('No data transferred');
+        return;
+    }
 
-      switch (true) {
-        case item.type.includes('two'):
-          count = 2;
-          break;
-        case item.type.includes('three'):
-          count = 3;
-          break;
-        case item.type.includes('four'):
-          count = 4;
-          break;
-        case item.type.includes('five'):
-          count = 5;
-          break;
-        case item.type.includes('six'):
-          count = 6;
-          break;
-        // Add more cases if needed
+    try {
+        const item = JSON.parse(itemString);
+        console.log({ item });
+        
+        if (item && item.type && item.type.includes('block')) {
+          let count = 1;
 
-        default:
-          // Handle the default case or leave count as 1
-          break;
-      }
+          switch (true) {
+            case item.type.includes('two'):
+              count = 2;
+              break;
+            case item.type.includes('three'):
+              count = 3;
+              break;
+            case item.type.includes('four'):
+              count = 4;
+              break;
+            case item.type.includes('five'):
+              count = 5;
+              break;
+            case item.type.includes('six'):
+              count = 6;
+              break;
+            // Add more cases if needed
 
-      console.log({ type: item.type });
+            default:
+              // Handle the default case or leave count as 1
+              break;
+          }
 
-      const newBlock: Block = {
-        _id: generateId(),
-        columnCount: count,
-        position: blocks.length,
-        templates: [],
-        containerStyles: { boxSizing: "borderBox" },
-        styles: { boxSizing: "borderBox" }
-      };
+          console.log({ type: item.type });
 
-      let updatedBlocks = [...blocks, newBlock]
-      updateBlocks(updatedBlocks)
+          const newBlock: Block = {
+            _id: generateId(),
+            columnCount: count,
+            position: blocks.length,
+            templates: [],
+            containerStyles: { boxSizing: "borderBox" },
+            styles: { boxSizing: "borderBox" }
+          };
+
+          let updatedBlocks = [...blocks, newBlock];
+          updateBlocks(updatedBlocks);
+        }
+    } catch (error) {
+        console.error('Error parsing JSON:', error);
     }
 
     setBlockDragOver(false);
-  }
+}
+
 
   const onDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();

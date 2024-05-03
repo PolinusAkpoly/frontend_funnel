@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ReviewsField.css'
 import { BlockTemplate } from '../../../models/BlockTemplate';
+import Reviews from '../../Reviews/Reviews';
 
 interface ReviewsFieldProps {
     template: BlockTemplate
@@ -9,7 +10,8 @@ interface ReviewsFieldProps {
 
 const ReviewsField: React.FC<ReviewsFieldProps> = ({ template, handleSetting }) => {
     const [mouseLeave, setMouseLeave] = useState<boolean>(true);
-
+    
+    // const user = useSelector(getCurrentUser)
 
     const handleSetOption = (option: string) => {
         if (option === 'gear') {
@@ -24,10 +26,19 @@ const ReviewsField: React.FC<ReviewsFieldProps> = ({ template, handleSetting }) 
         // }
     }
 
-   
-    const { styles, buttonIcon, content } = template
+
+    const { content } = template
     console.log(content);
+
+
+    useEffect(() => {
+       
+          
+        
+      },[]);
+
     
+
     return (
         <div
             onMouseLeave={() => setMouseLeave(true)}
@@ -45,8 +56,8 @@ const ReviewsField: React.FC<ReviewsFieldProps> = ({ template, handleSetting }) 
                     ))}
                 </div>
             </div>
-           
-            <a  style={ styles} {...template?.attributes}>
+
+            {/* <a  style={ styles} {...template?.attributes}>
                 { 
                 buttonIcon &&  
                 <span dangerouslySetInnerHTML={{__html: buttonIcon}} 
@@ -54,7 +65,14 @@ const ReviewsField: React.FC<ReviewsFieldProps> = ({ template, handleSetting }) 
                 }
                
                 <span dangerouslySetInnerHTML={{__html:  content}} />
-            </a>
+            </a> */}
+
+           
+            <Reviews
+            // content ={content}
+            />
+           
+
 
         </div>
     );
